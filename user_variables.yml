@@ -19,7 +19,7 @@
 ###
 
 ## Debug and Verbose options.
-debug: false
+debug: true
 
 ## Common Glance Overrides
 # Set glance_default_store to "swift" if using Cloud Files backend
@@ -128,11 +128,20 @@ debug: false
 #   https_proxy: "{{ proxy_env_url }}"
 #   no_proxy: "{{ no_proxy_env }}"
 
-
+proxy_env_url: http://dcim:3128/
+# no_proxy_env: "localhost,127.0.0.1,{{ internal_lb_vip_address }},{{ external_lb_vip_address }},{% for host in groups['all_containers'] %}{{ hostvars[host]['container_address'] }}{% if not loop.last %},{% endif %}{% endfor %}"
+no_proxy_env: "localhost,127.0.0.1,10.*.*.*"
+global_environment_variables:
+   HTTP_PROXY: "{{ proxy_env_url }}"
+   HTTPS_PROXY: "{{ proxy_env_url }}"
+   NO_PROXY: "{{ no_proxy_env }}"
+   http_proxy: "{{ proxy_env_url }}"
+   https_proxy: "{{ proxy_env_url }}"
+   no_proxy: "{{ no_proxy_env }}"
 ## SSH connection wait time
 # If an increased delay for the ssh connection check is desired,
 # uncomment this variable and set it appropriately.
-#ssh_delay: 5
+ssh_delay: 15
 
 
 ## HAProxy
