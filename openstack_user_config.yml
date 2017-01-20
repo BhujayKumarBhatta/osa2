@@ -13,7 +13,7 @@ used_ips:
 
 global_overrides:
   internal_lb_vip_address: 10.0.0.12
-  external_lb_vip_address: openstack.itc
+  external_lb_vip_address: 10.0.0.12
   tunnel_bridge: "br-vxlan"
   management_bridge: "br-mgmt"
   provider_networks:
