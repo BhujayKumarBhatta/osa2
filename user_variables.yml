@@ -174,10 +174,10 @@ ssh_delay: 15
 # To use another file to feed the role, override the following var:
 # haproxy_keepalived_vars_file: 'vars/configs/keepalived_haproxy.yml'
 ## Load Balancer Configuration (haproxy/keepalived)
-haproxy_keepalived_external_vip_cidr: "10.0.0.0/24"
-haproxy_keepalived_internal_vip_cidr: "10.0.0.0/24"
-haproxy_keepalived_external_interface: eno2
-haproxy_keepalived_internal_interface: br-mgmt
+#haproxy_keepalived_external_vip_cidr: "10.0.0.0/24"
+#haproxy_keepalived_internal_vip_cidr: "10.0.0.0/24"
+#haproxy_keepalived_external_interface: eno2
+#haproxy_keepalived_internal_interface: br-mgmt
 ## Host security hardening
 # The openstack-ansible-security role provides security hardening for hosts
 # by applying security configurations from the STIG. Hardening is disabled by

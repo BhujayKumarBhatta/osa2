@@ -83,9 +83,9 @@ repo-infra_hosts:
     ip: 10.0.0.12
 
 # load balancer
-haproxy_hosts:
-  infra1:
-    ip: 10.0.0.12
+#haproxy_hosts:
+#  infra1:
+#    ip: 10.0.0.12
 
 ###
 ### OpenStack
