@@ -12,8 +12,8 @@ used_ips:
    - "10.0.2.1,10.0.2.100"
 
 global_overrides:
-  internal_lb_vip_address: 10.0.0.12
-  external_lb_vip_address: 10.0.0.12
+  internal_lb_vip_address: 10.0.0.13
+  external_lb_vip_address: 10.0.0.14
   tunnel_bridge: "br-vxlan"
   management_bridge: "br-mgmt"
   provider_networks:
