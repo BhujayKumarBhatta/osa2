@@ -12,8 +12,8 @@ used_ips:
    - "10.0.2.1,10.0.2.100"
 
 global_overrides:
-  internal_lb_vip_address: 10.0.0.12
-  #external_lb_vip_address: 10.1.0.13
+  internal_lb_vip_address: 10.0.0.50
+  external_lb_vip_address: 14.142.104.141
   tunnel_bridge: "br-vxlan"
   management_bridge: "br-mgmt"
   provider_networks:
@@ -81,10 +81,17 @@ shared-infra_hosts:
 repo-infra_hosts:
   infra1:
     ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
 
 # load balancer
 haproxy_hosts:
   infra1:
+    ip: 10.0.0.50
+
+# rsyslog server
+log_hosts:
+  log1:
     ip: 10.0.0.12
 
 ###
@@ -95,42 +102,99 @@ haproxy_hosts:
 identity_hosts:
   infra1:
     ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
 
 # cinder api services
 storage-infra_hosts:
   infra1:
     ip: 10.0.0.12
-
+  infra2:
+    ip: 10.0.0.13
 # glance
 image_hosts:
   infra1:
     ip: 10.0.0.12
+    container_vars:
+      limit_container_types: glance
+      glance_nfs_client:
+        - server: "10.0.2.15"
+          remote_path: "/images"
+          local_path: "/var/lib/glance/images"
+          type: "nfs"
+          options: "_netdev,auto"
+  infra2:
+    ip: 10.0.0.13
+    container_vars:
+      limit_container_types: glance
+      glance_nfs_client:
+        - server: "10.0.2.15"
+          remote_path: "/images"
+          local_path: "/var/lib/glance/images"
+          type: "nfs"
+          options: "_netdev,auto"        
 
 # nova api, conductor, etc services
 compute-infra_hosts:
   infra1:
     ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
 
 # heat
 orchestration_hosts:
   infra1:
     ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
 
 # horizon
 dashboard_hosts:
   infra1:
     ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
 
 # neutron server, agents (L3, etc)
 network_hosts:
   infra1:
     ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
+# ceilometer (telemetry API)
+metering-infra_hosts:
+  infra1:
+    ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
+
+# aodh (telemetry alarm service)
+metering-alarm_hosts:
+  infra1:
+    ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
+
+# gnocchi (telemetry metrics storage)
+metrics_hosts:
+  infra1:
+    ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
+
 
 # nova hypervisors
 compute_hosts:
   compute1:
     ip: 10.0.0.33
-
+  compute2:
+    ip: 10.0.0.34
+# ceilometer compute agent (telemetry)
+metering-compute_hosts:
+  compute1:
+    ip: 10.0.0.33
+  compute2:
+    ip: 10.0.0.34
 # cinder storage host (LVM-backed)
 #storage_hosts:
 #  storage1:
@@ -146,6 +210,16 @@ compute_hosts:
 storage_hosts:
   infra1:
     ip: 10.0.0.12
+    container_vars:
+      cinder_backends:
+        limit_container_types: cinder_volume
+        cinder_nfs_client:
+          nfs_shares_config: /etc/cinder/nfs_shares
+          shares:
+            - ip: "10.0.2.15"
+              share: "/vol/cinder"
+  infra2:
+    ip: 10.0.0.13
     container_vars:
       cinder_backends:
         limit_container_types: cinder_volume
