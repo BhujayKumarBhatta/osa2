@@ -12,8 +12,8 @@ used_ips:
    - "10.0.2.1,10.0.2.100"
 
 global_overrides:
-  internal_lb_vip_address: 10.0.0.50
-  external_lb_vip_address: 14.142.104.141
+  internal_lb_vip_address: 10.0.0.12
+  #external_lb_vip_address: 14.142.104.141
   tunnel_bridge: "br-vxlan"
   management_bridge: "br-mgmt"
   provider_networks:
@@ -86,8 +86,10 @@ repo-infra_hosts:
 
 # load balancer
 haproxy_hosts:
-  haproxy1:
-    ip: 10.0.0.50
+  infra1:
+    ip: 10.0.0.12
+  infra2:
+    ip: 10.0.0.13
 
 # rsyslog server
 log_hosts:
