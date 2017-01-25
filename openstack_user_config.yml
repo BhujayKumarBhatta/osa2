@@ -76,6 +76,8 @@ global_overrides:
 shared-infra_hosts:
   infra2:
     ip: 10.0.0.13
+  infra1:
+    ip: 10.0.0.12
    
 
 # repository (apt cache, python packages, etc)
@@ -89,8 +91,7 @@ repo-infra_hosts:
 haproxy_hosts:
   infra2:
     ip: 10.0.0.13
-  infra1:
-    ip: 10.0.0.12
+  
 
 # rsyslog server
 log_hosts:
