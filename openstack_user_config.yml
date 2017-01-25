@@ -74,24 +74,23 @@ global_overrides:
 
 # galera, memcache, rabbitmq, utility
 shared-infra_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
-    ip: 10.0.0.12
-  
+    ip: 10.0.0.13
+  infra1:
+    ip: 10.0.0.12  
 
 # repository (apt cache, python packages, etc)
 repo-infra_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 
 # load balancer
 haproxy_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 
 # rsyslog server
@@ -105,20 +104,20 @@ log_hosts:
 
 # keystone
 identity_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 
 # cinder api services
 storage-infra_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 # glance
 image_hosts:
-  infra1:
+  infra2:
     ip: 10.0.0.13
     container_vars:
       limit_container_types: glance
@@ -128,7 +127,7 @@ image_hosts:
           local_path: "/var/lib/glance/images"
           type: "nfs"
           options: "_netdev,auto"
-  infra2:
+  infra1:
     ip: 10.0.0.12
     container_vars:
       limit_container_types: glance
@@ -141,50 +140,50 @@ image_hosts:
 
 # nova api, conductor, etc services
 compute-infra_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 
 # heat
 orchestration_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 
 # horizon
 dashboard_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 
 # neutron server, agents (L3, etc)
 network_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 # ceilometer (telemetry API)
 metering-infra_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 
 # aodh (telemetry alarm service)
 metering-alarm_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 
 # gnocchi (telemetry metrics storage)
 metrics_hosts:
-  infra1:
-    ip: 10.0.0.13
   infra2:
+    ip: 10.0.0.13
+  infra1:
     ip: 10.0.0.12
 
 
@@ -213,7 +212,7 @@ metering-compute_hosts:
 #          volume_backend_name: LVM_iSCSI
 #          iscsi_ip_address: "10.0.0.12"
 storage_hosts:
-  infra1:
+  infra2:
     ip: 10.0.0.13
     container_vars:
       cinder_backends:
@@ -223,7 +222,7 @@ storage_hosts:
           shares:
             - ip: "10.0.2.15"
               share: "/vol/cinder"
-  infra2:
+  infra1:
     ip: 10.0.0.12
     container_vars:
       cinder_backends:
