@@ -141,7 +141,7 @@ global_environment_variables:
    no_proxy: "{{ no_proxy_env }}"
 ## SSH connection wait time
 # If an increased delay for the ssh connection check is desired,
-# uncomment this variable and set it appropriately.
+# uncomment this variable and set it appropriately.   
 ssh_delay: 15
 
 
